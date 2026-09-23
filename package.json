@@ -1,0 +1,11 @@
+{
+  "name": "skill-museum-learning",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "技能研学资源编排领域资料",
+  "scripts": {
+    "build": "node --check src/skill_museum_learning.js && node --check tests/contract.test.js",
+    "test": "node --test"
+  }
+}
