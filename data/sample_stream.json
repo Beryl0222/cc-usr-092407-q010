@@ -1,0 +1,201 @@
+[
+  {
+    "event_id": "sample-stream-001",
+    "kind": "STATION_CAPACITY_SET",
+    "occurred_at": "2026-09-22T17:00:00+08:00",
+    "subject_id": "cnc-station",
+    "payload": {
+      "version": 1,
+      "status": "open",
+      "capacity": 10,
+      "prerequisites": [],
+      "equipment": ["cnc-mill"],
+      "mentor_shifts": [{ "start": "2026-09-23T08:00:00+08:00", "end": "2026-09-23T12:00:00+08:00", "mentors": 2 }],
+      "safety": { "wheelchair_accessible": true, "max_group_size": 20 }
+    }
+  },
+  {
+    "event_id": "sample-stream-002",
+    "kind": "STATION_CAPACITY_SET",
+    "occurred_at": "2026-09-22T17:00:00+08:00",
+    "subject_id": "welding-station",
+    "payload": {
+      "version": 1,
+      "status": "open",
+      "capacity": 10,
+      "prerequisites": [],
+      "equipment": ["weld-bench"],
+      "mentor_shifts": [{ "start": "2026-09-23T08:00:00+08:00", "end": "2026-09-23T12:00:00+08:00", "mentors": 2 }],
+      "safety": { "wheelchair_accessible": true, "max_group_size": 20 }
+    }
+  },
+  {
+    "event_id": "sample-stream-003",
+    "kind": "GROUP_REQUESTED",
+    "occurred_at": "2026-09-23T08:50:00+08:00",
+    "subject_id": "team-a",
+    "payload": {
+      "objectives": ["cnc-basics"],
+      "time_window": { "start": "2026-09-23T09:00:00+08:00", "end": "2026-09-23T12:00:00+08:00" },
+      "members": { "total": 8, "wheelchair_users": 1, "mentors": 1 },
+      "support_needs": ["wheelchair_access"]
+    }
+  },
+  {
+    "event_id": "sample-stream-004",
+    "kind": "GROUP_REQUESTED",
+    "occurred_at": "2026-09-23T08:52:00+08:00",
+    "subject_id": "team-b",
+    "payload": {
+      "objectives": ["cnc-basics"],
+      "time_window": { "start": "2026-09-23T09:00:00+08:00", "end": "2026-09-23T11:00:00+08:00" },
+      "members": { "total": 6, "mentors": 1 },
+      "support_needs": []
+    }
+  },
+  {
+    "event_id": "sample-stream-005",
+    "kind": "ITINERARY_HELD",
+    "occurred_at": "2026-09-23T09:02:00+08:00",
+    "subject_id": "team-a",
+    "payload": {
+      "hold_id": "hold-team-a-seg-1",
+      "group_id": "team-a",
+      "segment_id": "team-a-seg-1",
+      "station_id": "cnc-station",
+      "slot": { "start": "2026-09-23T09:30:00+08:00", "end": "2026-09-23T10:30:00+08:00" },
+      "quantity": 8,
+      "expires_at": "2026-09-23T09:17:00+08:00"
+    }
+  },
+  {
+    "event_id": "sample-stream-006",
+    "kind": "GROUP_DEFERRED",
+    "occurred_at": "2026-09-23T09:03:00+08:00",
+    "subject_id": "team-b",
+    "payload": {
+      "group_id": "team-b",
+      "segment_id": "team-b-seg-1",
+      "station_id": "cnc-station",
+      "slot": { "start": "2026-09-23T09:30:00+08:00", "end": "2026-09-23T10:30:00+08:00" },
+      "quantity": 6,
+      "reason": "capacity_exhausted",
+      "queue_position": 1
+    }
+  },
+  {
+    "event_id": "sample-stream-007",
+    "kind": "STATION_CAPACITY_SET",
+    "occurred_at": "2026-09-23T09:05:00+08:00",
+    "subject_id": "cnc-station",
+    "payload": {
+      "version": 2,
+      "status": "closed",
+      "capacity": 0,
+      "prerequisites": [],
+      "equipment": ["cnc-mill"],
+      "mentor_shifts": [],
+      "safety": { "wheelchair_accessible": true, "max_group_size": 20 }
+    }
+  },
+  {
+    "event_id": "sample-stream-008",
+    "kind": "HOLD_RELEASED",
+    "occurred_at": "2026-09-23T09:06:00+08:00",
+    "subject_id": "team-a",
+    "payload": { "hold_id": "hold-team-a-seg-1", "reason": "station_closed" }
+  },
+  {
+    "event_id": "sample-stream-009",
+    "kind": "ITINERARY_HELD",
+    "occurred_at": "2026-09-23T09:06:00+08:00",
+    "subject_id": "team-a",
+    "payload": {
+      "hold_id": "hold-team-a-seg-2",
+      "group_id": "team-a",
+      "segment_id": "team-a-seg-2",
+      "station_id": "welding-station",
+      "slot": { "start": "2026-09-23T09:40:00+08:00", "end": "2026-09-23T10:40:00+08:00" },
+      "quantity": 8,
+      "expires_at": "2026-09-23T09:21:00+08:00"
+    }
+  },
+  {
+    "event_id": "sample-stream-010",
+    "kind": "ROUTE_REPLANNED",
+    "occurred_at": "2026-09-23T09:06:00+08:00",
+    "subject_id": "team-a",
+    "payload": {
+      "group_id": "team-a",
+      "cause": { "type": "station_closed", "station_id": "cnc-station" },
+      "replaced_segment_ids": ["team-a-seg-1"],
+      "new_segments": [
+        {
+          "segment_id": "team-a-seg-2",
+          "station_id": "welding-station",
+          "slot": { "start": "2026-09-23T09:40:00+08:00", "end": "2026-09-23T10:40:00+08:00" },
+          "status": "held"
+        }
+      ],
+      "affected": [
+        { "group_id": "team-a", "effect": "rerouted", "cause": "station_closed" },
+        { "group_id": "team-b", "effect": "waitlist_suspended", "station_id": "cnc-station" }
+      ]
+    }
+  },
+  {
+    "event_id": "sample-stream-011",
+    "kind": "ITINERARY_CONFIRMED",
+    "occurred_at": "2026-09-23T09:10:00+08:00",
+    "subject_id": "team-a",
+    "payload": { "hold_id": "hold-team-a-seg-2", "source": { "device_id": "kiosk-02", "seq": 1 } }
+  },
+  {
+    "event_id": "sample-stream-012",
+    "kind": "CHECKIN_RECORDED",
+    "occurred_at": "2026-09-23T09:42:00+08:00",
+    "subject_id": "team-a",
+    "payload": {
+      "group_id": "team-a",
+      "segment_id": "team-a-seg-2",
+      "station_id": "welding-station",
+      "source": { "device_id": "kiosk-02", "seq": 2 }
+    }
+  },
+  {
+    "event_id": "sample-stream-013",
+    "kind": "EVIDENCE_RECORDED",
+    "occurred_at": "2026-09-23T10:40:00+08:00",
+    "subject_id": "team-a",
+    "payload": {
+      "group_id": "team-a",
+      "segment_id": "team-a-seg-2",
+      "evidence": { "objectives": ["welding-intro"], "note": "完成焊接体验（虚构）" }
+    }
+  },
+  {
+    "event_id": "sample-stream-014",
+    "kind": "VISIT_RECONCILED",
+    "occurred_at": "2026-09-23T12:00:00+08:00",
+    "subject_id": "team-a",
+    "payload": {
+      "group_id": "team-a",
+      "planned": [
+        {
+          "segment_id": "team-a-seg-2",
+          "station_id": "welding-station",
+          "slot": { "start": "2026-09-23T09:40:00+08:00", "end": "2026-09-23T10:40:00+08:00" },
+          "status": "completed"
+        }
+      ],
+      "actual": [
+        {
+          "segment_id": "team-a-seg-2",
+          "station_id": "welding-station",
+          "slot": { "start": "2026-09-23T09:40:00+08:00", "end": "2026-09-23T10:40:00+08:00" }
+        }
+      ],
+      "differences": []
+    }
+  }
+]
