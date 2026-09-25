@@ -5,7 +5,7 @@
   "type": "module",
   "description": "技能研学资源编排领域资料",
   "scripts": {
-    "build": "node --check src/skill_museum_learning.js && node --check tests/contract.test.js",
+    "build": "node --check src/events.js && node --check src/coordinator.js && node --check src/skill_museum_learning.js && node --check tests/contract.test.js && node --check tests/scenario_wednesday.test.js && node --check tests/invariants.test.js",
     "test": "node --test"
   }
 }

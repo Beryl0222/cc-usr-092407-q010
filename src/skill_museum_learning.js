@@ -1,10 +1,3 @@
-// skill_museum_learning 领域资料的基础结构。
-
-export const EVENT_KINDS = Object.freeze(["GROUP_REQUESTED", "STATION_CAPACITY_SET", "ITINERARY_HELD", "ROUTE_REPLANNED", "VISIT_RECONCILED"]);
-export const REQUIRED_FIELDS = Object.freeze(["event_id", "kind", "occurred_at", "subject_id", "payload"]);
-
-export function validateEvent(record) {
-  const problems = REQUIRED_FIELDS.filter((name) => !(name in record));
-  if (!EVENT_KINDS.includes(record.kind)) problems.push("kind");
-  return problems;
-}
+// 兼容入口：领域事件约定已拆分为 events.js（事件目录/字段契约）
+// 与 coordinator.js（事件溯源协调引擎），此处保留原有导出名。
+export { EVENT_KINDS, REQUIRED_FIELDS, validateEvent } from "./events.js";
